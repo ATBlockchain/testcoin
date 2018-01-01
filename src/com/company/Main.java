@@ -1,8 +1,10 @@
 package com.company;
 
 import com.company.crypto.common.ECKeyPair;
+import com.company.crypto.common.SHAUtil;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
 
 public class Main {
 
@@ -18,14 +20,34 @@ public class Main {
             //Public/Private ECDSA Key Pair
             System.out.println("Private Key: " + new String(ecKeyPair.getPrivate(), "UTF-8"));
             System.out.println("Public Key: " + new String(ecKeyPair.getPublic(), "UTF-8"));
-            
+
             //Bitcoin address is a 160-bit hash of the public portion of a public/private ECDSA keypair
             System.out.println("Bitcoin Address: " + new String(ecKeyPair.getAddress().toByteArray(), "UTF-8"));
 
 
-        } catch(UnsupportedEncodingException ex){
+
+            /*
+            //Initial for genesis block
+            Transaction transaction = new Transaction();
+            //transaction.setTransactionIns()
+            TransactionIn transactionIn
+
+            //Create hash for genesis block
+            Block genesisBlock = new Block();
+            genesisBlock.set
+
+
+            String genesisBlockHash = SHAUtil.generateSHA256Hash("", "", LocalDateTime.now(), 1l);
+            System.out.println("Gnesis Block Hash: " + genesisBlockHash);
+            */
+
+        } catch(Exception ex){
             System.err.println(ex.getMessage());
         }
+
+
+
+        //
 
 
 
