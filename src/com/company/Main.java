@@ -11,6 +11,8 @@ import java.util.List;
 
 public class Main {
 
+    private static List<Block> blocks = new ArrayList<Block>();
+
     public static void main(String[] args) {
 
         System.out.println("Hello World");
@@ -20,36 +22,42 @@ public class Main {
 
         try{
 
+            String aydansWalletAddress = new String(ecKeyPair.getAddress().toByteArray(), "UTF-8");
+            String thaisWalletAddress = new String(ecKeyPair.getAddress().toByteArray(), "UTF-8");
+
             //Public/Private ECDSA Key Pair
             System.out.println("Private Key: " + new String(ecKeyPair.getPrivate(), "UTF-8"));
             System.out.println("Public Key: " + new String(ecKeyPair.getPublic(), "UTF-8"));
 
             //Bitcoin address is a 160-bit hash of the public portion of a public/private ECDSA keypair
-            System.out.println("Bitcoin Address: " + new String(ecKeyPair.getAddress().toByteArray(), "UTF-8"));
+            System.out.println("Aydan's Bitcoin Address: " + aydansWalletAddress);
+            System.out.println("Thai's Bitcoin Address: " + thaisWalletAddress);
 
 
 
             //Initial for genesis block
-            Transaction transaction = new Transaction();
+//            Transaction transaction = new Transaction();
             //transaction.getTransactionIns().clear(); Genesis block does not contain transaction inputs!
             
-            transaction.getTransactionOuts().add()
+//            transaction.getTransactionOuts().add()
 
             //Create hash for genesis block
-            Block genesisBlock = new Block();
-            genesisBlock.set
+//            Block genesisBlock = new Block();
+//            genesisBlock.set
 
 
-            String genesisBlockHash = SHAUtil.generateSHA256Hash("", "", LocalDateTime.now(), 1l);
-            System.out.println("Gnesis Block Hash: " + genesisBlockHash);
+//            String genesisBlockHash = SHAUtil.generateSHA256Hash("", "", LocalDateTime.now(), 1l);
+//            System.out.println("Gnesis Block Hash: " + genesisBlockHash);
+
+            blocks.add(mineBlock(aydansWalletAddress));
+            blocks.add(mineBlock(thaisWalletAddress));
+
 
         } catch(Exception ex){
             System.err.println(ex.getMessage());
         }
 
-        List<Block> blocks = new ArrayList<Block>();
-        blocks.add(mineBlock(blocks));
-        blocks.add(mineBlock(blocks));
+
 
         //
 
@@ -58,26 +66,33 @@ public class Main {
         // write your code here
     }
 
-    private static Block mineBlock(List<Block> blocks) {
+    private static Block mineBlock(String walletAddress) {
         if (blocks.size() == 0) {
             Block block = new Block();
-            block.setTransactions(createTransactions());
+            block.setTransactions(createTransactions(walletAddress));
         }
-        return new Block();
+        Block block = new Block();
+        block.setTransactions(createTransactions());
     }
 
-    private static List<Transaction> createTransactions() {
+    private static List<Transaction> createTransactions(String toAddress) {
         Transaction transaction = new Transaction();
         transaction.setTransactionIns(createTransactionIns());
-        transaction.setTransactionOuts(createTransactionOuts());
+        transaction.setTransactionOuts(createTransactionOuts(toAddress));
         return Collections.singletonList(transaction);
     }
 
     private static List<TransactionIn> createTransactionIns() {
-        return Collections.singletonList(new TransactionIn());
+        List<TransactionIn> transactionIns = new ArrayList<TransactionIn>();
+        transactionIns.add(createGenerationTransaction());
+        return transactionIns;
     }
 
-    private static List<TransactionOut> createTransactionOuts() {
+    private static TransactionIn createGenerationTransaction() {
+        return new TransactionIn();
+    }
+
+    private static List<TransactionOut> createTransactionOuts(String toAddress) {
         return Collections.singletonList(new TransactionOut());
     }
 }
