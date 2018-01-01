@@ -7,7 +7,6 @@ public class Block {
     private String prevBlock;
     private String merkleRoot;
     private LocalDateTime timestamp;
-    private Long bits;
     private Long nonce;
     private List<Transaction> transactions;
 
