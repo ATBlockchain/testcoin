@@ -24,4 +24,8 @@ dependencies {
 
     compile group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.50'
 
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.9'
+
+
+
 }
