@@ -3,10 +3,12 @@ package com.company;
 public class TransactionOut {
     private Long value;
 
-    /**
-     * Receiver address (will get hashed 160)
+    /*
+        The recipient of the transaction.
+
+        Subsequent TransactionIn's will have a 'signedPublickey' that must be equal to this value (when de-signed)
      */
-    private String receiverPublicKey;
+    private String publicKey; //Equivilant to pk_script script in regular bitcoin implementation
 
     //private String script;
 
@@ -18,21 +20,11 @@ public class TransactionOut {
         this.value = value;
     }
 
-    public String getReceiverPublicKey() {
-        return receiverPublicKey;
+    public String getPublicKey() {
+        return publicKey;
     }
 
-    public void setReceiverPublicKey(String receiverPublicKey) {
-        this.receiverPublicKey = receiverPublicKey;
+    public void setPublicKey(String publicKey) {
+        this.publicKey = publicKey;
     }
-
-    /*
-    public String getScript() {
-        return script;
-    }
-
-    public void setScript(String script) {
-        this.script = script;
-    }
-    */
 }
