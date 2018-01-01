@@ -7,7 +7,6 @@ public class Block {
     private String prevBlock;
     private String merkleRoot;
     private LocalDateTime timestamp;
-    private Long bits;
     private Long nonce;
     private List<Transaction> transactions;
 
@@ -34,15 +33,7 @@ public class Block {
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
-
-    public Long getBits() {
-        return bits;
-    }
-
-    public void setBits(Long bits) {
-        this.bits = bits;
-    }
-
+    
     public Long getNonce() {
         return nonce;
     }
