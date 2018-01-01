@@ -72,7 +72,9 @@ public class Main {
             block.setTransactions(createTransactions(walletAddress));
         }
         Block block = new Block();
-        block.setTransactions(createTransactions());
+        block.setTransactions(createTransactions(walletAddress));
+
+        return block;
     }
 
     private static List<Transaction> createTransactions(String toAddress) {
