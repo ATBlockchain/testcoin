@@ -49,8 +49,11 @@ public class Main {
 //            String genesisBlockHash = SHAUtil.generateSHA256Hash("", "", LocalDateTime.now(), 1l);
 //            System.out.println("Gnesis Block Hash: " + genesisBlockHash);
 
-            blocks.add(mineBlock(aydansWalletAddress));
-            blocks.add(mineBlock(thaisWalletAddress));
+            blocks.add(mineBlock(aydansWalletAddress, new ArrayList<Transaction>()));
+
+
+
+            blocks.add(mineBlock(thaisWalletAddress, new ArrayList<Transaction>()));
 
 
         } catch(Exception ex){
@@ -66,18 +69,27 @@ public class Main {
         // write your code here
     }
 
-    private static Block mineBlock(String walletAddress) {
-        if (blocks.size() == 0) {
-            Block block = new Block();
-            block.setTransactions(createTransactions(walletAddress));
-        }
+    private static Block mineBlock(String walletAddress, List<Transaction> transactions) {
         Block block = new Block();
-        block.setTransactions(createTransactions(walletAddress));
+
+        if (blocks.size() == 0) {
+            // Create the genesis block
+            //
+            // See: https://sourceforge.net/p/bitcoin/code/133/tree/trunk/main.cpp#l1607
+
+            block.setTransactions(createTransactions(walletAddress, transactions));
+
+        } else {
+            // Create a normal block
+
+            block.setTransactions(createTransactions(walletAddress, transactions));
+
+        }
 
         return block;
     }
 
-    private static List<Transaction> createTransactions(String toAddress) {
+    private static List<Transaction> createTransactions(String toAddress, List<Transaction> transactions) {
         Transaction transaction = new Transaction();
         transaction.setTransactionIns(createTransactionIns());
         transaction.setTransactionOuts(createTransactionOuts(toAddress));
