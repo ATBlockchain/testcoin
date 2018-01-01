@@ -1,6 +1,6 @@
 package com.company;
 
-public class Outpoint {
+public class OutPoint {
     private String hash;
     private Long index;
 

@@ -1,13 +1,13 @@
 package com.company;
 
 public class TransactionIn {
-    private Outpoint previousOutput;
+    private OutPoint previousOutPoint;
 
-    public Outpoint getPreviousOutput() {
-        return previousOutput;
+    public OutPoint getPreviousOutPoint() {
+        return previousOutPoint;
     }
 
-    public void setPreviousOutput(Outpoint previousOutput) {
-        this.previousOutput = previousOutput;
+    public void setPreviousOutPoint(OutPoint previousOutPoint) {
+        this.previousOutPoint = previousOutPoint;
     }
 }
