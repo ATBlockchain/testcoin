@@ -5,6 +5,9 @@ import com.company.crypto.common.SHAUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Main {
 
@@ -44,12 +47,37 @@ public class Main {
             System.err.println(ex.getMessage());
         }
 
-
+        List<Block> blocks = new ArrayList<Block>();
+        blocks.add(mineBlock(blocks));
+        blocks.add(mineBlock(blocks));
 
         //
 
 
 
         // write your code here
+    }
+
+    private static Block mineBlock(List<Block> blocks) {
+        if (blocks.size() == 0) {
+            Block block = new Block();
+            block.setTransactions(createTransactions());
+        }
+        return new Block();
+    }
+
+    private static List<Transaction> createTransactions() {
+        Transaction transaction = new Transaction();
+        transaction.setTransactionIns(createTransactionIns());
+        transaction.setTransactionOuts(createTransactionOuts());
+        return Collections.singletonList(transaction);
+    }
+
+    private static List<TransactionIn> createTransactionIns() {
+        return Collections.singletonList(new TransactionIn());
+    }
+
+    private static List<TransactionOut> createTransactionOuts() {
+        return Collections.singletonList(new TransactionOut());
     }
 }
