@@ -1,10 +1,11 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Transaction {
-    private List<TransactionIn> transactionIns;
-    private List<TransactionOut> transactionOuts;
+    private List<TransactionIn> transactionIns = new ArrayList<TransactionIn>();
+    private List<TransactionOut> transactionOuts = new ArrayList<TransactionOut>();
 
     public List<TransactionIn> getTransactionIns() {
         return transactionIns;

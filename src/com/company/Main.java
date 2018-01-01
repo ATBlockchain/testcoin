@@ -26,11 +26,11 @@ public class Main {
 
 
 
-            /*
             //Initial for genesis block
             Transaction transaction = new Transaction();
-            //transaction.setTransactionIns()
-            TransactionIn transactionIn
+            //transaction.getTransactionIns().clear(); Genesis block does not contain transaction inputs!
+            
+            transaction.getTransactionOuts().add()
 
             //Create hash for genesis block
             Block genesisBlock = new Block();
@@ -39,7 +39,6 @@ public class Main {
 
             String genesisBlockHash = SHAUtil.generateSHA256Hash("", "", LocalDateTime.now(), 1l);
             System.out.println("Gnesis Block Hash: " + genesisBlockHash);
-            */
 
         } catch(Exception ex){
             System.err.println(ex.getMessage());
